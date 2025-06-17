@@ -4,13 +4,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
+  const handleStartConversation = () => {
+    window.open('mailto:your-email@example.com?subject=Let\'s start a conversation!', '_blank');
+  };
+
+  const handleGetInTouch = () => {
+    window.open('mailto:your-email@example.com?subject=Getting in touch', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
       <section className="container mx-auto px-4 pt-20 pb-16">
         <div className="text-center space-y-6 animate-fade-in">
-          <div className="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-8">
-            <User className="w-16 h-16 text-white" />
+          <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-8 shadow-lg">
+            <img 
+              src="/lovable-uploads/cd5b68d1-490c-40cb-98f2-23fbfb6ba51e.png" 
+              alt="Profile" 
+              className="w-full h-full object-cover"
+            />
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Hey, I'm Your Portfolio Creator
@@ -19,10 +31,17 @@ const Index = () => {
             Beginner vibe coder • Professional dancer • Average gymnast • Fun to be around human being
           </p>
           <div className="flex justify-center gap-4 pt-4">
-            <Button className="bg-blue-600 hover:bg-blue-700 transition-colors">
-              View My Work
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700 transition-colors"
+              onClick={handleStartConversation}
+            >
+              Start a Conversation
             </Button>
-            <Button variant="outline" className="border-purple-300 text-purple-600 hover:bg-purple-50">
+            <Button 
+              variant="outline" 
+              className="border-purple-300 text-purple-600 hover:bg-purple-50"
+              onClick={handleGetInTouch}
+            >
               Get In Touch
             </Button>
           </div>
@@ -125,7 +144,11 @@ const Index = () => {
             Whether you want to talk code, swap dance moves, or just have a good conversation, 
             I'm always up for meeting new people.
           </p>
-          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3"
+            onClick={handleStartConversation}
+          >
             Start a Conversation
           </Button>
         </div>
