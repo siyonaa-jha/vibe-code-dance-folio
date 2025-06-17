@@ -1,5 +1,5 @@
 
-import { User, Code, Dance, Gymnast } from "lucide-react";
+import { User, Code, Music, Zap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -54,7 +54,7 @@ const Index = () => {
           <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-l-purple-500">
             <CardHeader className="text-center">
               <div className="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-                <Dance className="w-8 h-8 text-purple-600" />
+                <Music className="w-8 h-8 text-purple-600" />
               </div>
               <CardTitle className="text-purple-600">Dance</CardTitle>
               <CardDescription>Professional level passion</CardDescription>
@@ -71,7 +71,7 @@ const Index = () => {
           <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-l-4 border-l-green-500">
             <CardHeader className="text-center">
               <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
-                <Gymnast className="w-8 h-8 text-green-600" />
+                <Zap className="w-8 h-8 text-green-600" />
               </div>
               <CardTitle className="text-green-600">Gymnastics</CardTitle>
               <CardDescription>Average but enthusiastic</CardDescription>
