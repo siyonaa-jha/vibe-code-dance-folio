@@ -1,9 +1,38 @@
-
-import { User, Code, Music, Zap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { User, Code, Music, Zap, Tv, Piano, Sparkles } from "lucide-react";
+
 
 const Index = () => {
+  const funFacts = [
+    "Siyonaa can solve a Rubik's cube in under 2 minutes!",
+    "She once performed a dance routine to 15 different K-drama OSTs in one show",
+    "Siyonaa choreographs her own dances, often inspired by her favorite K-dramas",
+    "She can do a perfect cartwheel on both sides (a rare gymnastics skill!)",
+    "Siyonaa has watched over 50 K-dramas and remembers every plot twist",
+    "She composed her first piano piece at age 11 inspired by a rainy day",
+    "Siyonaa can type 65 words per minute while humming her favorite songs",
+    "She once stayed up all night perfecting a dance performance and nailed it on stage",
+    "Siyonaa's favorite late-night snack is homemade chocolate chip cookies",
+    "She dreams in dance choreography and dramatic OST lyrics",
+    "Siyonaa can name all BTS members and their birth years in under 10 seconds",
+    "She practices piano scales while daydreaming about her next big stage performance"
+  ];
+  
+  
+    const [currentFact, setCurrentFact] = useState(() => {
+      return funFacts[Math.floor(Math.random() * funFacts.length)];
+    });
+  
+    const handleGenerateFact = () => {
+      let newFact;
+      do {
+        newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+      } while (newFact === currentFact && funFacts.length > 1);
+      setCurrentFact(newFact);
+    };
+
   const handleStartConversation = () => {
     window.open('mailto:your-email@example.com?subject=Let\'s start a conversation!', '_blank');
   };
@@ -25,7 +54,7 @@ const Index = () => {
             />
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Hey, I'm Your Portfolio Creator
+            Hey, I'm a Creator
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Beginner vibe coder • Professional dancer • Average gymnast • Fun to be around human being
@@ -100,6 +129,35 @@ const Index = () => {
                 Not winning medals, but having a blast. Balance, strength, and the 
                 occasional successful routine keep me coming back.
               </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Random Fun Facts Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-8">Random Fun Facts</h2>
+          <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-indigo-600" />
+              </div>
+              <CardTitle className="text-indigo-600">Did You Know?</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="min-h-[60px] flex items-center justify-center">
+                <p className="text-lg text-gray-700 font-medium leading-relaxed animate-fade-in">
+                  {currentFact}
+                </p>
+              </div>
+              <Button 
+                onClick={handleGenerateFact}
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
+              >
+                <Sparkles className="w-4 h-4 mr-2" />
+                Another Fun Fact!
+              </Button>
             </CardContent>
           </Card>
         </div>
