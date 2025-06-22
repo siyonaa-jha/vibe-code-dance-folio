@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { User, Code, Music, Zap, Tv, Piano, Sparkles } from "lucide-react";
 
-
 const Index = () => {
   const funFacts = [
     "Siyonaa can solve a Rubik's cube in under 2 minutes!",
@@ -19,19 +18,18 @@ const Index = () => {
     "Siyonaa can name all BTS members and their birth years in under 10 seconds",
     "She practices piano scales while daydreaming about her next big stage performance"
   ];
-  
-  
-    const [currentFact, setCurrentFact] = useState(() => {
-      return funFacts[Math.floor(Math.random() * funFacts.length)];
-    });
-  
-    const handleGenerateFact = () => {
-      let newFact;
-      do {
-        newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
-      } while (newFact === currentFact && funFacts.length > 1);
-      setCurrentFact(newFact);
-    };
+
+  const [currentFact, setCurrentFact] = useState(() => {
+    return funFacts[Math.floor(Math.random() * funFacts.length)];
+  });
+
+  const handleGenerateFact = () => {
+    let newFact;
+    do {
+      newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    } while (newFact === currentFact && funFacts.length > 1);
+    setCurrentFact(newFact);
+  };
 
   const handleStartConversation = () => {
     window.open('mailto:your-email@example.com?subject=Let\'s start a conversation!', '_blank');
@@ -39,6 +37,78 @@ const Index = () => {
 
   const handleGetInTouch = () => {
     window.open('mailto:your-email@example.com?subject=Getting in touch', '_blank');
+  };
+
+  // BTS Quiz State and Logic
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [quizResult, setQuizResult] = useState(null);
+
+  const quizQuestions = [
+    {
+      question: "Which BTS member is known as the 'Golden Maknae'?",
+      options: ["Jungkook", "Jimin", "V", "Jin"],
+      correctAnswer: "Jungkook"
+    },
+    {
+      question: "What is the title of BTS's first Korean studio album?",
+      options: ["Wings", "Dark & Wild", "Skool Luv Affair", "Boombayah"],
+      correctAnswer: "Dark & Wild"
+    },
+    {
+      question: "Which BTS song features the line 'You got the best of me'?",
+      options: ["DNA", "Blood Sweat & Tears", "Dope", "Mic Drop"],
+      correctAnswer: "DNA"
+    },
+    {
+      question: "What is the name of BTS's fanbase?",
+      options: ["EXO-L", "ARMY", "BLINK", "ONCE"],
+      correctAnswer: "ARMY"
+    },
+    {
+      question: "In which year did BTS debut?",
+      options: ["2010", "2013", "2015", "2017"],
+      correctAnswer: "2013"
+    }
+  ];
+
+  const handleQuizStart = () => {
+    setQuizStarted(true);
+    setCurrentQuestion(0);
+    setAnswers({});
+    setQuizResult(null);
+  };
+
+  const handleAnswerSelect = (questionIndex, answer) => {
+    setAnswers((prev) => ({ ...prev, [questionIndex]: answer }));
+    if (questionIndex < quizQuestions.length - 1) {
+      setCurrentQuestion(questionIndex + 1);
+    } else {
+      calculateQuizResult();
+    }
+  };
+
+  const calculateQuizResult = () => {
+    const correctAnswers = quizQuestions.reduce((acc, question, index) => {
+      return acc + (answers[index] === question.correctAnswer ? 1 : 0);
+    }, 0);
+    let resultMessage;
+    if (correctAnswers === 5) {
+      resultMessage = "You're a BTS superfan! You know everything about the boys!";
+    } else if (correctAnswers >= 3) {
+      resultMessage = "Great job, ARMY! You're pretty knowledgeable about BTS!";
+    } else {
+      resultMessage = "Nice try! Keep listening to BTS and you'll be a pro in no time!";
+    }
+    setQuizResult({ correctAnswers, total: quizQuestions.length, message: resultMessage });
+  };
+
+  const handleQuizRestart = () => {
+    setQuizStarted(false);
+    setCurrentQuestion(0);
+    setAnswers({});
+    setQuizResult(null);
   };
 
   return (
@@ -158,6 +228,69 @@ const Index = () => {
                 <Sparkles className="w-4 h-4 mr-2" />
                 Another Fun Fact!
               </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* BTS Quiz Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-8">Test Your BTS Knowledge!</h2>
+          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardHeader>
+              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mb-4">
+                <Music className="w-8 h-8 text-purple-600" />
+              </div>
+              <CardTitle className="text-purple-600">BTS Trivia Quiz</CardTitle>
+              <CardDescription>Are you a true ARMY? Take this quick quiz to find out!</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {!quizStarted && !quizResult && (
+                <Button 
+                  onClick={handleQuizStart}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Start the Quiz!
+                </Button>
+              )}
+              {quizStarted && !quizResult && (
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 font-medium">
+                    Question {currentQuestion + 1} of {quizQuestions.length}: {quizQuestions[currentQuestion].question}
+                  </p>
+                  <div className="grid gap-2">
+                    {quizQuestions[currentQuestion].options.map((option, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        className="border-purple-300 text-purple-600 hover:bg-purple-50 w-full py-2"
+                        onClick={() => handleAnswerSelect(currentQuestion, option)}
+                      >
+                        {option}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {quizResult && (
+                <div className="space-y-6">
+                  <p className="text-lg text-gray-700 font-medium">
+                    You got {quizResult.correctAnswers} out of {quizResult.total} correct!
+                  </p>
+                  <p className="text-lg text-gray-700 font-medium leading-relaxed">
+                    {quizResult.message}
+                  </p>
+                  <Button
+                    onClick={handleQuizRestart}
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
+                  >
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Try Again!
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
