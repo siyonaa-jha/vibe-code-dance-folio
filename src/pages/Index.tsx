@@ -299,7 +299,7 @@ const Index = () => {
        {/* ✅ New Section: Spotify Playlist */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-bold text-gray-800">My Favorite K-Drama OSTs 🎧</h2>
+          <h2 className="text-3xl font-bold text-gray-800">My Favorite songs 🎧</h2>
           <p className="text-lg text-gray-600">
             Here’s a playlist I vibe to while dancing, coding, or dreaming up my next big performance.
           </p>
