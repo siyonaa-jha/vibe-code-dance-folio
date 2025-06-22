@@ -296,6 +296,28 @@ const Index = () => {
         </div>
       </section>
 
+       {/* ✅ New Section: Spotify Playlist */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-bold text-gray-800">My Favorite K-Drama OSTs 🎧</h2>
+          <p className="text-lg text-gray-600">
+            Here’s a playlist I vibe to while dancing, coding, or dreaming up my next big performance.
+          </p>
+          <div className="rounded-xl overflow-hidden shadow-xl border border-purple-200">
+            <iframe 
+              src="https://open.spotify.com/embed/playlist/1xre461J1kYyIgu8AFUg6f?utm_source=generator&theme=0" 
+              width="100%" 
+              height="380" 
+              frameBorder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              className="rounded-xl"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+
       {/* About Section */}
       <section className="bg-white/70 backdrop-blur-sm py-16">
         <div className="container mx-auto px-4">
