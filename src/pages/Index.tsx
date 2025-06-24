@@ -3,7 +3,37 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { User, Code, Music, Zap, Tv, Piano, Sparkles } from "lucide-react";
 
+
 const Index = () => {
+  const vacationTimeline = [
+    { time: "9:00 AM", activity: "😴 Sleep in like royalty — no alarms, no stress." },
+    { time: "10:00 AM", activity: "☕️ Slow breakfast with lo-fi and journaling." },
+    { time: "11:00 AM", activity: "🧘‍♀️ Stretch or freestyle dance warm-up on the balcony." },
+    { time: "12:00 PM", activity: "🎬 K-drama binge session begins (tissues nearby)." },
+    { time: "2:00 PM", activity: "🍱 Comfort food lunch — extra cheese encouraged." },
+    { time: "3:30 PM", activity: "💃 Freestyle choreography session in room mirror." },
+    { time: "5:00 PM", activity: "🎹 Piano time — random melodies, full of feeling." },
+    { time: "6:30 PM", activity: "🚿 Refresh and skincare, outfit switch just for fun." },
+    { time: "7:30 PM", activity: "🍪 Bake cookies while lip-syncing to BTS." },
+    { time: "9:00 PM", activity: "🌆 Evening walks with K-pop and dreams in my ears." },
+    { time: "10:30 PM", activity: "📓 Late-night journaling + future stage dreams." },
+    { time: "12:00 AM", activity: "🌌 Stargazing and soft music until sleep takes over." }
+  ];
+  
+  const [currentStep, setCurrentStep] = useState(0);
+  
+  const handleNextStep = () => {
+    if (currentStep < vacationTimeline.length - 1) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
+  
+  const handlePrevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prev) => prev - 1);
+    }
+  };
+  
   const funFacts = [
     "Siyonaa can solve a Rubik's cube in under 2 minutes!",
     "She once performed a dance routine to 15 different K-drama OSTs in one show",
@@ -18,18 +48,19 @@ const Index = () => {
     "Siyonaa can name all BTS members and their birth years in under 10 seconds",
     "She practices piano scales while daydreaming about her next big stage performance"
   ];
-
-  const [currentFact, setCurrentFact] = useState(() => {
-    return funFacts[Math.floor(Math.random() * funFacts.length)];
-  });
-
-  const handleGenerateFact = () => {
-    let newFact;
-    do {
-      newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
-    } while (newFact === currentFact && funFacts.length > 1);
-    setCurrentFact(newFact);
-  };
+  
+  
+    const [currentFact, setCurrentFact] = useState(() => {
+      return funFacts[Math.floor(Math.random() * funFacts.length)];
+    });
+  
+    const handleGenerateFact = () => {
+      let newFact;
+      do {
+        newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+      } while (newFact === currentFact && funFacts.length > 1);
+      setCurrentFact(newFact);
+    };
 
   const handleStartConversation = () => {
     window.open('mailto:your-email@example.com?subject=Let\'s start a conversation!', '_blank');
@@ -37,78 +68,6 @@ const Index = () => {
 
   const handleGetInTouch = () => {
     window.open('mailto:your-email@example.com?subject=Getting in touch', '_blank');
-  };
-
-  // BTS Quiz State and Logic
-  const [quizStarted, setQuizStarted] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [quizResult, setQuizResult] = useState(null);
-
-  const quizQuestions = [
-    {
-      question: "Which BTS member is known as the 'Golden Maknae'?",
-      options: ["Jungkook", "Jimin", "V", "Jin"],
-      correctAnswer: "Jungkook"
-    },
-    {
-      question: "What is the title of BTS's first Korean studio album?",
-      options: ["Wings", "Dark & Wild", "Skool Luv Affair", "Boombayah"],
-      correctAnswer: "Dark & Wild"
-    },
-    {
-      question: "Which BTS song features the line 'You got the best of me'?",
-      options: ["DNA", "Blood Sweat & Tears", "Dope", "Mic Drop"],
-      correctAnswer: "DNA"
-    },
-    {
-      question: "What is the name of BTS's fanbase?",
-      options: ["EXO-L", "ARMY", "BLINK", "ONCE"],
-      correctAnswer: "ARMY"
-    },
-    {
-      question: "In which year did BTS debut?",
-      options: ["2010", "2013", "2015", "2017"],
-      correctAnswer: "2013"
-    }
-  ];
-
-  const handleQuizStart = () => {
-    setQuizStarted(true);
-    setCurrentQuestion(0);
-    setAnswers({});
-    setQuizResult(null);
-  };
-
-  const handleAnswerSelect = (questionIndex, answer) => {
-    setAnswers((prev) => ({ ...prev, [questionIndex]: answer }));
-    if (questionIndex < quizQuestions.length - 1) {
-      setCurrentQuestion(questionIndex + 1);
-    } else {
-      calculateQuizResult();
-    }
-  };
-
-  const calculateQuizResult = () => {
-    const correctAnswers = quizQuestions.reduce((acc, question, index) => {
-      return acc + (answers[index] === question.correctAnswer ? 1 : 0);
-    }, 0);
-    let resultMessage;
-    if (correctAnswers === 5) {
-      resultMessage = "You're a BTS superfan! You know everything about the boys!";
-    } else if (correctAnswers >= 3) {
-      resultMessage = "Great job, ARMY! You're pretty knowledgeable about BTS!";
-    } else {
-      resultMessage = "Nice try! Keep listening to BTS and you'll be a pro in no time!";
-    }
-    setQuizResult({ correctAnswers, total: quizQuestions.length, message: resultMessage });
-  };
-
-  const handleQuizRestart = () => {
-    setQuizStarted(false);
-    setCurrentQuestion(0);
-    setAnswers({});
-    setQuizResult(null);
   };
 
   return (
@@ -204,6 +163,52 @@ const Index = () => {
         </div>
       </section>
 
+      {/* A Day in Siyonaa’s Shoes – Vacation Edition (with navigation) */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-bold text-gray-800">A Day in Siyonaa’s Shoes 👟</h2>
+          <p className="text-lg text-gray-600">
+            During vacations, my timeline looks like this — cozy, creative, and full of good vibes.
+          </p>
+
+          <Card className="bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 shadow-lg transition-all duration-300">
+            <CardHeader>
+              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-pink-100 to-purple-100 rounded-full flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-pink-600" />
+              </div>
+              <CardTitle className="text-pink-600">Vacation Timeline</CardTitle>
+              <CardDescription>One moment at a time 💫</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="min-h-[100px] flex flex-col items-center justify-center">
+                <time className="text-sm text-pink-500 font-semibold">{vacationTimeline[currentStep].time}</time>
+                <p className="text-lg text-gray-700 font-medium leading-relaxed mt-2">
+                  {vacationTimeline[currentStep].activity}
+                </p>
+              </div>
+              <div className="flex justify-between gap-4">
+                <Button
+                  variant="outline"
+                  className="border-pink-300 text-pink-600 hover:bg-pink-50 w-full"
+                  onClick={handlePrevStep}
+                  disabled={currentStep === 0}
+                >
+                  ← Previous
+                </Button>
+                <Button
+                  className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white w-full"
+                  onClick={handleNextStep}
+                  disabled={currentStep === vacationTimeline.length - 1}
+                >
+                  Next →
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+
       {/* Random Fun Facts Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center">
@@ -232,91 +237,6 @@ const Index = () => {
           </Card>
         </div>
       </section>
-
-      {/* BTS Quiz Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">Test Your BTS Knowledge!</h2>
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
-            <CardHeader>
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mb-4">
-                <Music className="w-8 h-8 text-purple-600" />
-              </div>
-              <CardTitle className="text-purple-600">BTS Trivia Quiz</CardTitle>
-              <CardDescription>Are you a true ARMY? Take this quick quiz to find out!</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {!quizStarted && !quizResult && (
-                <Button 
-                  onClick={handleQuizStart}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
-                >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Start the Quiz!
-                </Button>
-              )}
-              {quizStarted && !quizResult && (
-                <div className="space-y-4">
-                  <p className="text-lg text-gray-700 font-medium">
-                    Question {currentQuestion + 1} of {quizQuestions.length}: {quizQuestions[currentQuestion].question}
-                  </p>
-                  <div className="grid gap-2">
-                    {quizQuestions[currentQuestion].options.map((option, index) => (
-                      <Button
-                        key={index}
-                        variant="outline"
-                        className="border-purple-300 text-purple-600 hover:bg-purple-50 w-full py-2"
-                        onClick={() => handleAnswerSelect(currentQuestion, option)}
-                      >
-                        {option}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {quizResult && (
-                <div className="space-y-6">
-                  <p className="text-lg text-gray-700 font-medium">
-                    You got {quizResult.correctAnswers} out of {quizResult.total} correct!
-                  </p>
-                  <p className="text-lg text-gray-700 font-medium leading-relaxed">
-                    {quizResult.message}
-                  </p>
-                  <Button
-                    onClick={handleQuizRestart}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
-                  >
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Try Again!
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-       {/* ✅ New Section: Spotify Playlist */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-bold text-gray-800">My Favorite songs 🎧</h2>
-          <p className="text-lg text-gray-600">
-            Here’s a playlist I vibe to while dancing, coding, or dreaming up my next big performance.
-          </p>
-          <div className="rounded-xl overflow-hidden shadow-xl border border-purple-200">
-            <iframe 
-              src="https://open.spotify.com/embed/playlist/1xre461J1kYyIgu8AFUg6f?utm_source=generator&theme=0" 
-              width="100%" 
-              height="380" 
-              frameBorder="0" 
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-              loading="lazy"
-              className="rounded-xl"
-            ></iframe>
-          </div>
-        </div>
-      </section>
-
 
       {/* About Section */}
       <section className="bg-white/70 backdrop-blur-sm py-16">
