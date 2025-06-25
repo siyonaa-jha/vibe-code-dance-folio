@@ -3,6 +3,77 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { User, Code, Music, Zap, Tv, Piano, Sparkles } from "lucide-react";
 
+const storyMemories = [
+  {
+    title: "Late‑Night Rooftop Dance 💃",
+    text: "Danced barefoot under moonlight as Ginny & Georgia played softly from my phone. The city lights were my audience.",
+    img: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    title: "Cozy Drama Marathon 🎬",
+    text: "Wrapped in a pink blanket fort, tissues at hand, mid‑episode 7 trauma with Ginny and Georgia — total emotional collapse.",
+    img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    title: "Snack‑Baking Cameo 🍪",
+    text: "Paused a scene to bake cookies mid‑show. The aroma filled the room just as drama heated up—sabotage by snack!",
+    img: "https://images.unsplash.com/photo-1511688878358-8e36a9f5f1cd?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    title: "Rainy Scene Journaling ☔",
+    text: "Built a tiny journal on my lap while rain tapped on the window—and Georgia revealed a secret in the next scene.",
+    img: "https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    title: "Moonlight Piano Interlude 🎹",
+    text: "Played random piano chords to echo the show's mood. Ginny's tears became my melody in that spontaneous jam.",
+    img: "https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=400&q=80"
+  },
+];
+
+function PolaroidCarousel() {
+  const [idx, setIdx] = useState(0);
+  const next = () => setIdx((i) => (i + 1) % storyMemories.length);
+  const prev = () => setIdx((i) => (i - 1 + storyMemories.length) % storyMemories.length);
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+      <h2 className="text-3xl font-bold text-center mb-8">Story Time Scrapbook 📸</h2>
+      <div className="relative max-w-md mx-auto">
+        <div
+          className="shadow-xl rounded-lg bg-white p-4 transform hover:scale-105 transition duration-300"
+          style={{
+            border: '12px solid white',
+            borderBottom: '48px solid white',
+          }}
+        >
+          <img
+            src={storyMemories[idx].img}
+            alt={storyMemories[idx].title}
+            className="w-full h-64 object-cover mb-2 rounded"
+          />
+          <h3 className="text-lg font-semibold">{storyMemories[idx].title}</h3>
+          <p className="text-gray-700 mt-1">{storyMemories[idx].text}</p>
+        </div>
+        <div className="flex justify-between mt-4">
+          <button
+            onClick={prev}
+            className="px-4 py-2 bg-white rounded shadow hover:bg-gray-100 text-sm font-medium"
+          >
+            ← Prev
+          </button>
+          <button
+            onClick={next}
+            className="px-4 py-2 bg-white rounded shadow hover:bg-gray-100 text-sm font-medium"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 const Index = () => {
   const vacationTimeline = [
@@ -162,6 +233,9 @@ const Index = () => {
           </Card>
         </div>
       </section>
+
+      {/* Polaroid Story Time Carousel */}
+      <PolaroidCarousel />
 
       {/* A Day in Siyonaa’s Shoes – Vacation Edition (with navigation) */}
       <section className="container mx-auto px-4 py-16">
