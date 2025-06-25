@@ -231,6 +231,53 @@ const Index = () => {
               </p>
             </CardContent>
           </Card>
+          {/* Student Life */}
+    <Card className="border-l-4 border-l-orange-500 hover:shadow-md transition">
+      <CardHeader className="text-center">
+        <div className="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
+          <User className="w-8 h-8 text-orange-600" />
+        </div>
+        <CardTitle className="text-orange-600">Student Life</CardTitle>
+        <CardDescription>Ryan International School Bangalore</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 text-center">
+          Currently pursuing my education at Ryan International School in Bangalore, balancing academics with my creative pursuits.
+        </p>
+      </CardContent>
+    </Card>
+
+    {/* K-Drama Enthusiast */}
+    <Card className="border-l-4 border-l-pink-500 hover:shadow-md transition">
+      <CardHeader className="text-center">
+        <div className="w-16 h-16 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-4">
+          <Tv className="w-8 h-8 text-pink-600" />
+        </div>
+        <CardTitle className="text-pink-600">K-Drama Enthusiast</CardTitle>
+        <CardDescription>Always ready for the next binge session</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 text-center">
+          I enjoy watching lots of K-dramas and getting lost in their amazing storylines, characters, and emotional rollercoasters.
+        </p>
+      </CardContent>
+    </Card>
+
+    {/* Piano Player */}
+    <Card className="border-l-4 border-l-yellow-500 hover:shadow-md transition">
+      <CardHeader className="text-center">
+        <div className="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+          <Piano className="w-8 h-8 text-yellow-600" />
+        </div>
+        <CardTitle className="text-yellow-600">Piano Player</CardTitle>
+        <CardDescription>Creating melodies at home</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 text-center">
+          I play piano at home once in a while, enjoying the peaceful moments and the joy of creating music in my free time.
+        </p>
+      </CardContent>
+    </Card>
         </div>
       </section>
 
