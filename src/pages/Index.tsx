@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { User, Code, Music, Zap, Tv, Piano, Sparkles } from "lucide-react";
+import CartwheelDodge from "@/components/CartwheelDodge";
 
 const storyMemories = [
   {
@@ -76,6 +77,31 @@ function PolaroidCarousel() {
 
 
 const Index = () => {
+  const jokes = [
+  "Did you know if you clean a vacuum cleaner… you *become* a vacuum cleaner? 🤯",
+  "If Mondays had a face, I'd accidentally hit it with a cartwheel. 😒🤸‍♀️",
+  "I asked my mirror who the drama queen was… and it showed me twice. 👑🪞",
+  "I danced so hard, my shadow filed a complaint. 💃🌑",
+  "Tried baking cookies at 2 AM… now the kitchen looks like a K-drama fight scene. 🍪🔥",
+  "I once whispered to my diary… and it spilled the tea on page 42. 📓🫖",
+  "Why did my pillow sue me? Emotional damage from late-night sobs. 😭🛏️",
+  "Practiced a cartwheel in the hallway… now mom's flower vase is history. 🫣🌀",
+  "I took a 5-minute nap… in 2007. Still recovering. 😴⏳",
+  "The only thing I run from is responsibility… and maybe horror movie dolls. 🏃‍♀️👻"
+];
+
+  const [currentJoke, setCurrentJoke] = useState(() => {
+    return jokes[Math.floor(Math.random() * jokes.length)];
+  });
+  
+  const handleNewJoke = () => {
+    let newJoke;
+    do {
+      newJoke = jokes[Math.floor(Math.random() * jokes.length)];
+    } while (newJoke === currentJoke && jokes.length > 1);
+    setCurrentJoke(newJoke);
+  };
+  
   const vacationTimeline = [
     { time: "9:00 AM", activity: "😴 Sleep in like royalty — no alarms, no stress." },
     { time: "10:00 AM", activity: "☕️ Slow breakfast with lo-fi and journaling." },
@@ -188,7 +214,7 @@ const Index = () => {
                 <Code className="w-8 h-8 text-blue-600" />
               </div>
               <CardTitle className="text-blue-600">Coding</CardTitle>
-              <CardDescription>Beginner vibe but growing every day</CardDescription>
+              <CardDescription>Beginner but growing every day</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 text-center">
@@ -283,11 +309,38 @@ const Index = () => {
 
       {/* Polaroid Story Time Carousel */}
       <PolaroidCarousel />
+{/* Jokes Section */}
+<section className="container mx-auto px-4 py-16">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-3xl font-bold text-gray-800 mb-8">Silly Siyonaa Says 😂</h2>
+    <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200 shadow-lg hover:shadow-xl transition-all duration-300">
+      <CardHeader>
+        <div className="w-16 h-16 mx-auto bg-gradient-to-br from-yellow-100 to-orange-100 rounded-full flex items-center justify-center mb-4">
+          <Sparkles className="w-8 h-8 text-yellow-600" />
+        </div>
+        <CardTitle className="text-yellow-600">Two-Liner Giggles</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="min-h-[60px] flex items-center justify-center">
+          <p className="text-lg text-gray-700 font-medium leading-relaxed animate-fade-in">
+            {currentJoke}
+          </p>
+        </div>
+        <Button 
+          onClick={handleNewJoke}
+          className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-6 py-2 transform hover:scale-105 transition-all duration-200"
+        >
+          😂 Tell Me Another!
+        </Button>
+      </CardContent>
+    </Card>
+  </div>
+</section>
 
-      {/* A Day in Siyonaa’s Shoes – Vacation Edition (with navigation) */}
+      {/* A Day in Siyonaa's Shoes – Vacation Edition (with navigation) */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-bold text-gray-800">A Day in Siyonaa’s Shoes 👟</h2>
+          <h2 className="text-3xl font-bold text-gray-800">A Day in Siyonaa's Shoes 👟</h2>
           <p className="text-lg text-gray-600">
             During vacations, my timeline looks like this — cozy, creative, and full of good vibes.
           </p>
@@ -329,6 +382,8 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Cartwheel Dodge Game */}
+      <CartwheelDodge />
 
       {/* Random Fun Facts Section */}
       <section className="container mx-auto px-4 py-16">
